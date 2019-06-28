@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 多维数组
+        var arr4 = [1, 2, [3, 4, [5, 6, [7, 8]]]];
+        arr4 = "" + arr4;            //这里对数组进行处理，转化为string
+        console.log(arr4);       //string
+        arr4 = arr4.split(",");     //转换为array
+        console.log(arr4);       //array
+        var arrx = [];
+        for (var i = 0; i < arr4.length; i++) {
+            arr4[i] = +arr4[i];       //隐式转换，变为数字
+            arrx[i] = arr4[i];
+        }
+        console.log(arr4);
+
+        var str = "6549846512165";
+        var q = str.split("");
+
+
+        function reduceDimension(arr) {
+            let ret = [];
+            function toArr(arr) {
+                arr.forEach(function (item) {
+                    item instanceof Array ? toArr(item) : ret.push(item);
+                });
+            }
+            toArr(arr);
+            return ret;
+        }
+
+        let arr6 = [1, 2, [3, 4, [5, 6, [7, 8]]]];
+        console.log(reduceDimension(arr6));
+
+    </script>
+</body>
+
+</html>
