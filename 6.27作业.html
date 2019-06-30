@@ -40,6 +40,49 @@
         console.log(reduceDimension(arr6));
 
     </script>
+    <script>
+        function flatten(arr) {
+            return arr.reduce(function (prev, next) {
+                return prev.concat(Array.isArray(next) ? flatten(next) : next)
+            }, [])
+        }
+        console.log(flatten(arr6))
+    </script>
+
+
+
+
+
+
+
+
+    <script>
+        function flatten1(arr) {
+            var res = [];
+            arr.map(item => {
+                if (Array.isArray(item)) {
+                    res = res.concat(flatten1(item));
+                } else {
+                    res.push(item);
+                }
+            });
+            return res;
+        }
+
+
+        // es6  扩展运算符
+        var newArr = [].concat(...arr6)
+        console.log(newArr)
+        function newflatten(arr) {
+            while (arr.some(item => Array.isArray(item))) {
+                arr = [].concat(...arr);
+            }
+            return arr;
+        }
+        var con = newflatten(arr6);
+        console.log(con)
+    </script>
+
 </body>
 
 </html>
